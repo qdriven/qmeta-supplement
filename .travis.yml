@@ -1,6 +1,6 @@
 env:
   global:
-    - CODECOV_TOKEN=:uuid-repo-token
+    - CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }}
 language: java
 scritp:
   - mvn clean test
