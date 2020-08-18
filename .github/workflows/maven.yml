@@ -21,7 +21,7 @@ jobs:
       with:
         java-version: 14
     - name: Build with Maven with test report
-      run: mvn clean test jacoco:report
+      run: mvn clean test && mvn jacoco:report
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1

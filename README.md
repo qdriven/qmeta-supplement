@@ -43,3 +43,6 @@ Cyclomatic complexity reflects the complexity of code by giving the number of pa
 To take a trivial example, if there is no if or switch statements in the code, the cyclomatic complexity will be 1, as we only need one execution path to cover the entire code.
 
 Generally the cyclomatic complexity reflects the number of test cases we need to implement in order to cover the entire code.
+
+- [jacoco](https://www.eclemma.org/jacoco/trunk/doc/report-mojo.html)
+- []
