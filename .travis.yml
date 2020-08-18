@@ -2,7 +2,7 @@ env:
   global:
     - CODECOV_TOKEN=${{ secrets.CODECOV_TOKEN }}
 language: java
-scritp:
+script:
   - mvn clean test
   - mvn jacoco:report
 
