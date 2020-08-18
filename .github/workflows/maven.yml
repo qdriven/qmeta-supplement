@@ -20,8 +20,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 14
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: Build with Maven with test report
+      run: mvn clean test jacoco:report
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
