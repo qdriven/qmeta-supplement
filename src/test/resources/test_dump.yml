@@ -1,0 +1,6 @@
+level:
+  root: info
+file:
+  path: xboot-logs
+  max-history: 7
+  max-size: 5MB
