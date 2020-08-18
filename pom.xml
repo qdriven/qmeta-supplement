@@ -90,8 +90,8 @@
                     <!--                    </compilerArgs>-->
                     <verbose>true</verbose>
                     <fork>true</fork>
-                    <source>14</source>
-                    <target>14</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <compilerVersion>14</compilerVersion>
                     <!--                    <annotationProcessorPaths>-->
                     <!--                        <path>-->
