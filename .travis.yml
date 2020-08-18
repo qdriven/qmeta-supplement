@@ -1,7 +1,10 @@
 env:
   global:
     - CODECOV_TOKEN=:uuid-repo-token
-
 language: java
+scritp:
+  - mvn clean test
+  - mvn jacoco:report
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
