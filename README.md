@@ -1,5 +1,8 @@
 # README
 
+[![codecov](https://codecov.io/gh/qdriven/qmeta-supplement/branch/master/graph/badge.svg)](https://codecov.io/gh/qdriven/qmeta-supplement)
+
+
 Supplement Tools for JAVA. It is a collection
 of different JAVA Helper based on Hutool
 
