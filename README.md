@@ -24,6 +24,7 @@ of different JAVA Helper based on Hutool
 
 ## Jacoco Report
 
+```
 Our report shows 21% instructions coverage, 17% branches coverage, 3/5 for cyclomatic complexity and so on.
 
 The 38 instructions shown by JaCoCo in the report refers to the bytecode instructions as opposed to ordinary Java code instructions.
@@ -46,3 +47,4 @@ Generally the cyclomatic complexity reflects the number of test cases we need to
 
 - [jacoco](https://www.eclemma.org/jacoco/trunk/doc/report-mojo.html)
 - [better jacoco](https://medium.com/better-programming/add-badges-to-a-github-repository-716d2988dc6a)
+```
