@@ -50,4 +50,5 @@ public class BeanUtilsTest {
         JSONUtil.toBean("{\"enableJenkinsJob\":1,\"repoDesc\":\"test\"}", GitRepoCreateReqVO.class);
     System.out.println(repo1);
   }
+
 }
