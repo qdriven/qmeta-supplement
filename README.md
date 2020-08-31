@@ -8,7 +8,7 @@ of different JAVA Helper based on Hutool
 
 ## Features:
 
-1. random utils
+1. Random utils
 2. Assert Utils
 3. Bean Utils
 4. Collection Utils

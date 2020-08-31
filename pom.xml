@@ -76,10 +76,17 @@
         <!--            <version>2.2.6</version>-->
         <!--        </dependency>-->
 <!--        data-factory-->
+<!--        experiemental-->
         <dependency>
             <groupId>com.github.houbb</groupId>
             <artifactId>data-factory-core</artifactId>
             <version>0.0.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.10</version>
         </dependency>
     </dependencies>
 
