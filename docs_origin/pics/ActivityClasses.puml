@@ -1,0 +1,50 @@
+@startuml
+
+class Privileges
+interface ActivityNode
+class ActivityContext
+class ActivityProviders
+class ActivityFlow
+class ActivityNodeActions
+class ActivityNodes
+
+ActivityFlow  o-- ActivityProviders
+ActivityProviders o-- ActivityNodes
+ActivityProviders o-- ActivityNodeActions
+ActivityProviders o-- Privileges
+ActivityProviders o-- ActivityContext
+ActivityNodes o-- ConcreteNode1
+ActivityNodes o-- ConcreteNode2
+
+ConcreteNode1--|> ActivityNode
+ConcreteNode2--|> ActivityNode
+
+class ActivityFlow{
+    ActionProviders provider
+    process()
+}
+
+class ActivityProviders {
+ getApproveActionByNodeName()
+ getRejectActionByNodeName()
+ getNodesByActivityName()
+ getPrivilegesByActivityName()
+}
+
+class ActivityNodeActions{
+    getNodeActions()
+}
+
+class ActivityNodeActions{
+    getNodes()
+}
+
+class Privileges{
+    getPrivileges()
+}
+
+interface ActivityNode{
+    approvals()
+}
+
+@enduml
