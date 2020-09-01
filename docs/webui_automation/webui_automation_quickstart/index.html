@@ -1,0 +1,1385 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="自动化测试文档中心">
+      
+      
+      
+      <link rel="shortcut icon" href="../../favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>WEB页面自动化-开始 - 自动化测试</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.6a5ad368.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#e92063">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="自动化测试" class="md-header-nav__button md-logo" aria-label="自动化测试">
+      
+  <img src="../../logo-white.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            自动化测试
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              WEB页面自动化-开始
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="自动化测试" class="md-nav__button md-logo" aria-label="自动化测试">
+      
+  <img src="../../logo-white.svg" alt="logo">
+
+    </a>
+    自动化测试
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="主页" class="md-nav__link">
+      主页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      QuickStart
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="QuickStart" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        QuickStart
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../project_structure/" title="项目结构和配置" class="md-nav__link">
+      项目结构和配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/selenium_in_a_wild_way/" title="WEB页面自动化-SELENIUM管理页面元素" class="md-nav__link">
+      WEB页面自动化-SELENIUM管理页面元素
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        WEB页面自动化-开始
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="WEB页面自动化-开始" class="md-nav__link md-nav__link--active">
+      WEB页面自动化-开始
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-page-object" class="md-nav__link">
+    1. 创建Page Object
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 创建Page Object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 解析页面元素:其实就是一个录制的过程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-pageobject" class="md-nav__link">
+    1.2 创建页面类(PageObject)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.创建注解和测试流程类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 生成注解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 生成流程测试代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 创建测试数据类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 构建测试用例类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-excel" class="md-nav__link">
+    4.1 构建测试用例EXCEL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 运行测试用例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-testngxml" class="md-nav__link">
+    6. 配置测试使用testng的xml文件
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../webui_automation_realexample/" title="WEB页面自动化-真实用例" class="md-nav__link">
+      WEB页面自动化-真实用例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/APIAutomation/" title="API 自动化测试" class="md-nav__link">
+      API 自动化测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/api_testing_qa/" title="API 自动化测试常见问题" class="md-nav__link">
+      API 自动化测试常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../activity_automation/activity_automation_defined_employees/" title="工作流测试之指定审批节点" class="md-nav__link">
+      工作流测试之指定审批节点
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../activity_automation/activity_automation_dynamic/" title="工作流测试之动态审批节点" class="md-nav__link">
+      工作流测试之动态审批节点
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      自动化测试模块介绍
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="自动化测试模块介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        自动化测试模块介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../intro/automation-purpose/" title="目的" class="md-nav__link">
+      目的
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../intro/automation-framework-impl/" title="基本模块的作用" class="md-nav__link">
+      基本模块的作用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../self_defined_elements/" title="页面自动化-页面元素的使用" class="md-nav__link">
+      页面自动化-页面元素的使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../element_handler/" title="页面自动化-页面元素方法查询" class="md-nav__link">
+      页面自动化-页面元素方法查询
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pageobject_codegenerator/" title="页面自动化-页面代码生成" class="md-nav__link">
+      页面自动化-页面代码生成
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../build_test/" title="页面自动化-WebTestActionBuilder" class="md-nav__link">
+      页面自动化-WebTestActionBuilder
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      接口自动化测试
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="接口自动化测试" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        接口自动化测试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/web%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/" title="接口测试－WEB接口常见的实现方法" class="md-nav__link">
+      接口测试－WEB接口常见的实现方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/APIAutomation/" title="API 自动化测试" class="md-nav__link">
+      API 自动化测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/API%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95-%E8%BF%9B%E9%98%B6/" title="API自动化测试-进阶" class="md-nav__link">
+      API自动化测试-进阶
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Tips
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tips" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Tips
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/WebTest_Debug/" title="WebUI Debug" class="md-nav__link">
+      WebUI Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/find_by_ref/" title="FindByRef annotation 使用" class="md-nav__link">
+      FindByRef annotation  使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../best_practice/verification_annotation/" title="verification 注解使用" class="md-nav__link">
+      verification 注解使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../best_practice/code_style/" title="JAVA 自动化测试代码规范" class="md-nav__link">
+      JAVA 自动化测试代码规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../best_practice/simple_ui_case/" title="一个简单测试用例的自动化实例" class="md-nav__link">
+      一个简单测试用例的自动化实例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/Database/" title="数据库操作" class="md-nav__link">
+      数据库操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/testng-xml-configuration/" title="TestNG 测试XML配置" class="md-nav__link">
+      TestNG 测试XML配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/use_own_password/" title="使用自己的用户名和密码获取万能密码" class="md-nav__link">
+      使用自己的用户名和密码获取万能密码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/JsonHelper/" title="JSON处理" class="md-nav__link">
+      JSON处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/page_object/" title="Page Object/Page Factory" class="md-nav__link">
+      Page Object/Page Factory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/TreeElement/" title="TreeElement 使用" class="md-nav__link">
+      TreeElement 使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/WebDriverHelper/" title="添加了Expectation的WebDriver操作" class="md-nav__link">
+      添加了Expectation的WebDriver操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/WebDriver%E6%93%8D%E4%BD%9C/" title="WebDriver原生操作" class="md-nav__link">
+      WebDriver原生操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/how_to_write_teststeps/" title="编写测试步骤的不同方法" class="md-nav__link">
+      编写测试步骤的不同方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/repeatable_elements/" title="重复填写控件使用" class="md-nav__link">
+      重复填写控件使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/StateElementReferneceException/" title="StateElementReferneceException" class="md-nav__link">
+      StateElementReferneceException
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/DateHelper/" title="DateHelper" class="md-nav__link">
+      DateHelper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/database_assetion/" title="数据库验证" class="md-nav__link">
+      数据库验证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/database_update/" title="预设条件数据的更新和回滚" class="md-nav__link">
+      预设条件数据的更新和回滚
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/testng_faq/" title="TestNG测试常见问题" class="md-nav__link">
+      TestNG测试常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/simplest_testngreport/" title="TestNG 定制报表简单原理" class="md-nav__link">
+      TestNG 定制报表简单原理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/PageFactory/" title="Page Factory 模式原理" class="md-nav__link">
+      Page Factory 模式原理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/random_data/" title="随机数据" class="md-nav__link">
+      随机数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../tips/data_construct_by_context/" title="动态测试数据构建" class="md-nav__link">
+      动态测试数据构建
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Git
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Git" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/git_basic/" title="Git 基础" class="md-nav__link">
+      Git 基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-page-object" class="md-nav__link">
+    1. 创建Page Object
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 创建Page Object">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 解析页面元素:其实就是一个录制的过程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-pageobject" class="md-nav__link">
+    1.2 创建页面类(PageObject)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2.创建注解和测试流程类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 生成注解
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2 生成流程测试代码
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 创建测试数据类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 构建测试用例类
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-excel" class="md-nav__link">
+    4.1 构建测试用例EXCEL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 运行测试用例
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-testngxml" class="md-nav__link">
+    6. 配置测试使用testng的xml文件
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+  
+    <div id="bsa-cpc"></div>
+  
+  
+                
+                
+                  
+                
+                
+                <h1 id="0">0.简单示例</h1>
+<p>以下展示一个WebUI测试从头到尾的一个过程：</p>
+<ul>
+<li>解析页面元素创建PageObject</li>
+<li>自动生成annotation 或者测试代码</li>
+<li>测试数据准备</li>
+<li>测试用例准备</li>
+<li>测试配置准备</li>
+<li>编写检查点</li>
+<li>执行和debug</li>
+<li>扩展测试数据</li>
+</ul>
+<p>让我们动起手来,不过为了简单的描述测试的思路,还是从使用Baidu查询的例子开始,同时这个章节的目的是让你熟悉一个自动化包含那些内容
+,以及每个内容需要做什么怎么做</p>
+<ul>
+<li>页面</li>
+<li>测试数据</li>
+<li>流程</li>
+<li>测试类</li>
+</ul>
+<h2 id="1-page-object">1. 创建Page Object</h2>
+<p>Page Object是用来存放被测页面元素说明的一个类，它就是对应了一个被测页面涉及到元素的一个模型，放在一个类里的好处是便于复用和包装，不用把如何查找页面元素的代码散落各处，同时在封装后使用，上层的测试用例级别的代码基本不会和这块再打交道，而是专注于什么样的业务流程。下面是一个使用辅助工具来进行解析页面元素创建Page Object 类的过程的说明。</p>
+<h3 id="11">1.1 解析页面元素:其实就是一个录制的过程</h3>
+<p>给页面元素定位非常花费时间，所以录制是一个不错的策略，不同的是这里的工具是解析页面html 源码，来得到我们想要的Page Object 类的格式。这些辅助工具还不能完全你把所有元素都非常好识别，但是还是可以起到一定程度提高效率。
+那么为什么自己写一个征用的工具呢？一个原因是没有太好的工具可以非常智能的完成这个任务，另外一个是使用JSOUP这样的工具写一些起到作用的工具不难(当然如果要完全解析正确很难).关于如何解析页面元素会在页面解析说明部分做详细解释.</p>
+<p>已Baidu的首页为例:
+<img alt="img" src="../../pics/baidu_home.jpg" /></p>
+<p>可以看到我们主要需要测试的部分是上图中标示部分,所以我们需要</p>
+<ul>
+<li>将页面中标示部分的HTMl源码取出</li>
+<li>然后复制到main/resources 目录下的source.txt文件</li>
+<li>运行如下的代码</li>
+</ul>
+<pre><code class="java">public class CodeGenerator {
+    public static void main(String[] args) {
+        WebUICodeGenerator.build().generatePageObjectClass(&quot;source.txt&quot;);
+    }
+}
+</code></pre>
+
+<p>得到如下的结果:</p>
+<pre><code class="java">@FindBy(id=&quot;su&quot;)
+@ElementName(elementName = &quot;su&quot;)
+private Button su;
+@FindBy(linkText=&quot;手写&quot;)
+@ElementName(elementName = &quot;手写&quot;)
+private Link 手写;
+@FindBy(linkText=&quot;拼音&quot;)
+@ElementName(elementName = &quot;拼音&quot;)
+private Link 拼音;
+@FindBy(linkText=&quot;关闭&quot;)
+@ElementName(elementName = &quot;关闭&quot;)
+private Link 关闭;
+@FindBy(name=&quot;wd&quot;)
+@ElementName(elementName = &quot;wd&quot;)
+private InputBox wd;
+</code></pre>
+
+<h2 id="12-pageobject">1.2 创建页面类(PageObject)</h2>
+<p>如果没有有明显的错误就根据如下结果创建页面类:</p>
+<pre><code class="java">public class BaiDuPage extends ExecutablePageObject {
+    public BaiDuPage(WebDriver driver) {
+        super(driver);
+    }
+
+    @FindBy(id = &quot;su&quot;)
+    @ElementName(elementName = &quot;su&quot;)
+    private Button su;
+    @FindBy(linkText = &quot;手写&quot;)
+    @ElementName(elementName = &quot;手写&quot;)
+    private Link 手写;
+    @FindBy(linkText = &quot;拼音&quot;)
+    @ElementName(elementName = &quot;拼音&quot;)
+    private Link 拼音;
+    @FindBy(linkText = &quot;关闭&quot;)
+    @ElementName(elementName = &quot;关闭&quot;)
+    private Link 关闭;
+    @FindBy(name = &quot;wd&quot;)
+    @ElementName(elementName = &quot;wd&quot;)
+    private InputBox wd;
+    --- 自动生成的getter/setter
+ }   
+</code></pre>
+
+<p>至此页面类就做好了.</p>
+<p><em>ps: 构造方法和getter/setter方法都可以通过IDE自动生成的</em></p>
+<h2 id="2">2.创建注解和测试流程类</h2>
+<p>假设我们想要测试的是:输入关键字,直接搜索这样一个业务,那么我们需要一些标示这个测试流程的一些方法类支撑,
+以下是如何构建的一个过程,分为:</p>
+<ul>
+<li>创建流程注解</li>
+<li>编写流程程序</li>
+</ul>
+<h2 id="21">2.1 生成注解</h2>
+<p>运行如下代码就可以生成注解:</p>
+<pre><code class="java">public class CodeGenerator {
+    public static void main(String[] args) {
+        WebUICodeGenerator.build().generateAnnotationStatement(&quot;Baidu Search&quot;, BaiDuPage.class);
+    }
+}
+</code></pre>
+
+<p>得到结果如下,把他复制到刚才创建好的页面类里面,同时添加最后的提交按钮到elementActionDescription里面:</p>
+<pre><code class="java">@UIActions(actions={@UIAction(processName=&quot;BaiduSearch&quot;,elementActionDescription={&quot;wd&quot;})
+})
+</code></pre>
+
+<p>新的页面类:</p>
+<pre><code class="java">@UIActions(actions={@UIAction(processName=&quot;BaiduSearch&quot;,elementActionDescription={&quot;wd&quot;,&quot;su&quot;})
+})
+</code></pre>
+
+<p>这里解释以下elementActionDescription, 这个放的内容是你执行整个业务流程需要操作的哪些WEB的元素,这个例子里面就是一个关键字框
+,一个提交按钮.</p>
+<p>如果有其他的业务流程需要测试,可以在添加@UIAction.</p>
+<h2 id="22">2.2 生成流程测试代码</h2>
+<pre><code class="java">public class CodeGenerator {
+    public static void main(String[] args) {
+        WebUICodeGenerator.build().generateFlowCodesForAnnotatedPage(&quot;Baidu Search&quot;,BaiDuPage.class);
+    }
+}
+</code></pre>
+
+<p>得到结果:</p>
+<pre><code class="java">
+public static void BaiduSearch(WebDriver driver,TestData testData){
+ WebTestActionBuilder.execute(Lists.newArrayList(
+                BaiDuPage.class)
+        ,&quot;Baidu Search&quot;,driver,testData);
+}
+
+</code></pre>
+
+<p>创建一个关于搜索的测试类</p>
+<pre><code class="java">
+public class BaiduSearchFlow {
+
+    public static void BaiDuSearch(WebDriver driver,TestData testData){
+        WebTestActionBuilder.execute(Lists.newArrayList(
+                BaiDuPage.class)
+                , &quot;BaiDu Search&quot;, driver, testData);
+    }
+}
+</code></pre>
+
+<p>以上步骤可以通过一步实现:</p>
+<pre><code class="java">public class CodeGenerator {
+    public static void main(String[] args) {
+        WebUICodeGenerator.build().generateAnnotationAndFlowCode(&quot;BaiDuSearch&quot;,BaiDuPage.class);
+    }
+}
+</code></pre>
+
+<p>结果就是:</p>
+<pre><code class="java">-- Class Name:BaiDuPage
+@UIActions(actions={@UIAction(processName=&quot;BaiDu Search&quot;,elementActionDescription={&quot;wd&quot;})
+})
+
+
+public static void baiDuSearch(WebDriver driver,TestData testData){
+ WebTestActionBuilder.execute(Lists.newArrayList(
+                BaiDuPage.class)
+        ,&quot;BaiDu Search&quot;,driver,testData);
+}
+</code></pre>
+
+<p>获取以上代码之后:
+1. 复制@UIActions到Page类
+2. 创建新的类,然后复制方法baiDuSearch到这个类里面</p>
+<p>至此测试流程就好了,如果在页面涉及的元素不多的情况下,这样做就有点啰嗦,不过如果页面元素比较多的情况下,这样就相对
+会方便一点.</p>
+<h2 id="3">3. 创建测试数据类</h2>
+<p>根据页面模型类生成测试数据:</p>
+<pre><code class="java">public class CodeGenerator {
+    public static void main(String[] args) {
+        WebUICodeGenerator.build().generateTestDataClass(BaiDuPage.class);
+    }
+}
+</code></pre>
+
+<p>得到结果:</p>
+<pre><code class="java">private String wd;
+</code></pre>
+
+<p>创建测试数据类(需要继承TestData类)用来做数据驱动:</p>
+<pre><code class="java">
+public class BaiduSearchData extends TestData {
+    private String wd;
+
+    public String getWd() {
+        return wd;
+    }
+
+    public void setWd(String wd) {
+        this.wd = wd;
+    }
+}
+</code></pre>
+
+<h2 id="4">4. 构建测试用例类</h2>
+<p>在test目录下面的flows目录创建测试类:</p>
+<pre><code class="java">public class BaiduSearchFlowTest extends BaseWebCurrencyTest{
+
+    @DataProvider(name = &quot;search_data&quot;)
+    public Iterator&lt;Object[]&gt; getTestData(Method m) throws Exception{
+        Map&lt;String, Class&gt; clazzMap = new HashMap&lt;String, Class&gt;();
+        clazzMap.put(&quot;SearchData&quot;, BaiduSearchData.class);
+        clazzMap.put(&quot;TestDescription&quot;, TestDescription.class);
+        Iterator&lt;Object[]&gt; y = TestDescription.filterByMethod(&quot;testcase/flows/BaiduSearchTestCases.xls&quot;, m, clazzMap);
+        return y;
+    }
+
+    @Test(dataProvider = &quot;search_data&quot;,description = &quot;百度搜索&quot;)
+    public void search_test(BaiduSearchData searchData,
+                             TestDescription td) throws Exception {
+        WebDriverHelper.get(DriverFactory.get(),&quot;http://www.baidu.com&quot;);
+       BaiduSearchFlow.BaiDuSearch(DriverFactory.get(),searchData);
+    }
+}
+</code></pre>
+
+<p>这里面有一些TestNG的注解:</p>
+<ul>
+<li>DataProvider : 提供数据驱动的数据源</li>
+<li>Test: 表明方法或者类是用来测试的</li>
+</ul>
+<h2 id="41-excel">4.1 构建测试用例EXCEL</h2>
+<p>在<code>TestDescription.filterByMethod</code> 方法指定的目录里面创建一个Excel文件.文件格式如下:</p>
+<p><img alt="img" src="../../pics/BaiduSearchTestCases.jpg" /></p>
+<p>图中标示的部分需要填写你测试方法名字,search.wd实际上就是你的测试数据,如图所示的文件,标示两个搜索用例,
+一个是搜索123,一个搜索345</p>
+<h2 id="5">5. 运行测试用例</h2>
+<p>理想情况下,运行测试用例文件,测试就可以跑起来了.</p>
+<h2 id="6-testngxml">6. 配置测试使用testng的xml文件</h2>
+<pre><code class="xml">&lt;suite name=&quot;BaiDu Search&quot;&gt;
+    &lt;listeners&gt;
+     &lt;listener class-name=&quot;com.dooioo.automation.listener.testng.SimpleWebDriverScreenShotTestListener&quot;/&gt;
+    &lt;/listeners&gt;
+    &lt;test verbose=&quot;1&quot; name=&quot;baidu search&quot; &gt;
+        &lt;classes&gt;
+            &lt;class name=&quot;com.dooioo.automation.flows.BaiduSearchFlowTest&quot;/&gt;
+        &lt;/classes&gt;
+    &lt;/test&gt;
+
+&lt;/suite&gt;
+</code></pre>
+
+<p>直接运行这个文件就可以驱动程序了.</p>
+<p>至此一个自动化的程序就好了(检查点还没有加),如果不同的测试数据代表你的不同测试用例了.总结以上的步骤:</p>
+<ul>
+<li>常见页面类</li>
+<li>创建操作方法</li>
+<li>创建测试数据</li>
+<li>构建测试用例类</li>
+<li>创建测试用例</li>
+<li>配置testngfile,运行测试</li>
+</ul>
+                
+              
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../tips/selenium_in_a_wild_way/" title="WEB页面自动化-SELENIUM管理页面元素" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                WEB页面自动化-SELENIUM管理页面元素
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../webui_automation_realexample/" title="WEB页面自动化-真实用例" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                WEB页面自动化-真实用例
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

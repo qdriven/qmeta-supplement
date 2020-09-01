@@ -1,0 +1,1165 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="自动化测试文档中心">
+      
+      
+      
+      <link rel="shortcut icon" href="../../favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Page Factory 模式原理 - 自动化测试</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.6a5ad368.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#e92063">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#selenium-page-factory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="自动化测试" class="md-header-nav__button md-logo" aria-label="自动化测试">
+      
+  <img src="../../logo-white.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            自动化测试
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Page Factory 模式原理
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="自动化测试" class="md-nav__button md-logo" aria-label="自动化测试">
+      
+  <img src="../../logo-white.svg" alt="logo">
+
+    </a>
+    自动化测试
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="主页" class="md-nav__link">
+      主页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      QuickStart
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="QuickStart" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        QuickStart
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/project_structure/" title="项目结构和配置" class="md-nav__link">
+      项目结构和配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../selenium_in_a_wild_way/" title="WEB页面自动化-SELENIUM管理页面元素" class="md-nav__link">
+      WEB页面自动化-SELENIUM管理页面元素
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/webui_automation_quickstart/" title="WEB页面自动化-开始" class="md-nav__link">
+      WEB页面自动化-开始
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/webui_automation_realexample/" title="WEB页面自动化-真实用例" class="md-nav__link">
+      WEB页面自动化-真实用例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/APIAutomation/" title="API 自动化测试" class="md-nav__link">
+      API 自动化测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/api_testing_qa/" title="API 自动化测试常见问题" class="md-nav__link">
+      API 自动化测试常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../activity_automation/activity_automation_defined_employees/" title="工作流测试之指定审批节点" class="md-nav__link">
+      工作流测试之指定审批节点
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../activity_automation/activity_automation_dynamic/" title="工作流测试之动态审批节点" class="md-nav__link">
+      工作流测试之动态审批节点
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      自动化测试模块介绍
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="自动化测试模块介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        自动化测试模块介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../intro/automation-purpose/" title="目的" class="md-nav__link">
+      目的
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../intro/automation-framework-impl/" title="基本模块的作用" class="md-nav__link">
+      基本模块的作用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/self_defined_elements/" title="页面自动化-页面元素的使用" class="md-nav__link">
+      页面自动化-页面元素的使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/element_handler/" title="页面自动化-页面元素方法查询" class="md-nav__link">
+      页面自动化-页面元素方法查询
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/pageobject_codegenerator/" title="页面自动化-页面代码生成" class="md-nav__link">
+      页面自动化-页面代码生成
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/build_test/" title="页面自动化-WebTestActionBuilder" class="md-nav__link">
+      页面自动化-WebTestActionBuilder
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      接口自动化测试
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="接口自动化测试" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        接口自动化测试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/web%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/" title="接口测试－WEB接口常见的实现方法" class="md-nav__link">
+      接口测试－WEB接口常见的实现方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/APIAutomation/" title="API 自动化测试" class="md-nav__link">
+      API 自动化测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/API%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95-%E8%BF%9B%E9%98%B6/" title="API自动化测试-进阶" class="md-nav__link">
+      API自动化测试-进阶
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Tips
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tips" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Tips
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WebTest_Debug/" title="WebUI Debug" class="md-nav__link">
+      WebUI Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../find_by_ref/" title="FindByRef annotation 使用" class="md-nav__link">
+      FindByRef annotation  使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../best_practice/verification_annotation/" title="verification 注解使用" class="md-nav__link">
+      verification 注解使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../best_practice/code_style/" title="JAVA 自动化测试代码规范" class="md-nav__link">
+      JAVA 自动化测试代码规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../best_practice/simple_ui_case/" title="一个简单测试用例的自动化实例" class="md-nav__link">
+      一个简单测试用例的自动化实例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/Database/" title="数据库操作" class="md-nav__link">
+      数据库操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testng-xml-configuration/" title="TestNG 测试XML配置" class="md-nav__link">
+      TestNG 测试XML配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../use_own_password/" title="使用自己的用户名和密码获取万能密码" class="md-nav__link">
+      使用自己的用户名和密码获取万能密码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../JsonHelper/" title="JSON处理" class="md-nav__link">
+      JSON处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../page_object/" title="Page Object/Page Factory" class="md-nav__link">
+      Page Object/Page Factory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TreeElement/" title="TreeElement 使用" class="md-nav__link">
+      TreeElement 使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WebDriverHelper/" title="添加了Expectation的WebDriver操作" class="md-nav__link">
+      添加了Expectation的WebDriver操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WebDriver%E6%93%8D%E4%BD%9C/" title="WebDriver原生操作" class="md-nav__link">
+      WebDriver原生操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../how_to_write_teststeps/" title="编写测试步骤的不同方法" class="md-nav__link">
+      编写测试步骤的不同方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../repeatable_elements/" title="重复填写控件使用" class="md-nav__link">
+      重复填写控件使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../StateElementReferneceException/" title="StateElementReferneceException" class="md-nav__link">
+      StateElementReferneceException
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DateHelper/" title="DateHelper" class="md-nav__link">
+      DateHelper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../database_assetion/" title="数据库验证" class="md-nav__link">
+      数据库验证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../database_update/" title="预设条件数据的更新和回滚" class="md-nav__link">
+      预设条件数据的更新和回滚
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testng_faq/" title="TestNG测试常见问题" class="md-nav__link">
+      TestNG测试常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../simplest_testngreport/" title="TestNG 定制报表简单原理" class="md-nav__link">
+      TestNG 定制报表简单原理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Page Factory 模式原理
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Page Factory 模式原理" class="md-nav__link md-nav__link--active">
+      Page Factory 模式原理
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#page-factory" class="md-nav__link">
+    Page Factory 的例子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-factory_1" class="md-nav__link">
+    Page Factory 实现的原理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-factory_2" class="md-nav__link">
+    Page Factory 有什么好处
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../random_data/" title="随机数据" class="md-nav__link">
+      随机数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data_construct_by_context/" title="动态测试数据构建" class="md-nav__link">
+      动态测试数据构建
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Git
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Git" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/git_basic/" title="Git 基础" class="md-nav__link">
+      Git 基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#page-factory" class="md-nav__link">
+    Page Factory 的例子
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-factory_1" class="md-nav__link">
+    Page Factory 实现的原理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-factory_2" class="md-nav__link">
+    Page Factory 有什么好处
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+  
+    <div id="bsa-cpc"></div>
+  
+  
+                
+                
+                  
+                
+                
+                <h1 id="selenium-page-factory">Selenium Page Factory 模式分析</h1>
+<p>本文主要用来分析Page Factory实现的原理以及一些扩展的可能性。</p>
+<h2 id="page-factory">Page Factory 的例子</h2>
+<p><a href="https://code.google.com/p/selenium/wiki/PageFactory">Selenium Page Factory Wiki</a></p>
+<p>首先解释一下这个例子：</p>
+<ul>
+<li>使用注解描述元素定位</li>
+<li>使用 <code>PageFactory.initElements(driver, page);</code></li>
+</ul>
+<pre><code class="java">public class GoogleSearchPage {
+    // The element is now looked up using the name attribute
+    @FindBy(how = How.NAME, using = &quot;q&quot;)
+    private WebElement searchBox;
+
+    public void searchFor(String text) {
+        // We continue using the element just as before
+        searchBox.sendKeys(text);
+        searchBox.submit();
+    }
+
+    public void searchFor(String text) {
+    GoogleSearchPage page＝ PageFactory.initElements(new ChromeDriver(), GoogleSearchPage.class);
+    }
+}
+</code></pre>
+
+<p>以上一个显而易见的好处就是减少了查找元素的代码量，比如类似于一下的代码：</p>
+<pre><code class="java">  driver.findElement(By.id(&quot;q&quot;))
+</code></pre>
+
+<p>但是只有这样的好处吗？我们先从分析Selenium Page Factory实现的原理说起</p>
+<h2 id="page-factory_1">Page Factory 实现的原理</h2>
+<p>PageFactory 是使用反射(Reflection)和动态代理(dynamic proxies)的方式来创建页面的每
+每个元素:</p>
+<ul>
+<li>PageFactory: initElements and proxyFields</li>
+</ul>
+<pre><code class="java">public static void initElements(FieldDecorator decorator, Object page) {
+    for(Class proxyIn = page.getClass(); proxyIn != Object.class; proxyIn = proxyIn.getSuperclass()) {
+        proxyFields(decorator, page, proxyIn);
+    }
+
+}
+
+private static void proxyFields(FieldDecorator decorator, Object page, Class&lt;?&gt; proxyIn) {
+    Field[] fields = proxyIn.getDeclaredFields();
+    Field[] arr$ = fields;
+    int len$ = fields.length;
+
+    for(int i$ = 0; i$ &lt; len$; ++i$) {
+        Field field = arr$[i$];
+        Object value = decorator.decorate(page.getClass().getClassLoader(), field);
+        if(value != null) {
+            try {
+                field.setAccessible(true);
+                field.set(page, value);
+            } catch (IllegalAccessException var10) {
+                throw new RuntimeException(var10);
+            }
+        }
+    }
+
+}
+</code></pre>
+
+<ul>
+<li>FieldDecorator：DefaultFieldDecorator 源码
+从DefaultFieldDecorator的源码看:</li>
+<li>实现decorate方法,WebElement 和List<WebElement> 都是通过proxy的方式创建的</li>
+<li>每个Proxy的方式都有一个对应的invocationHandler处理
+   Selenium的源码有两个invocationHandler：</li>
+<li>LocatingElementHandler</li>
+<li>LocatingElementListHandler</li>
+</ul>
+<pre><code class="java">public Object decorate(ClassLoader loader, Field field) {
+        if(!WebElement.class.isAssignableFrom(field.getType()) &amp;&amp; !this.isDecoratableList(field)) {
+            return null;
+        } else {
+            ElementLocator locator = this.factory.createLocator(field);
+            return locator == null?null:(WebElement.class.isAssignableFrom(field.getType())?this.proxyForLocator(loader, locator):(List.class.isAssignableFrom(field.getType())?this.proxyForListLocator(loader, locator):null));
+        }
+    }
+
+    private boolean isDecoratableList(Field field) {
+        if(!List.class.isAssignableFrom(field.getType())) {
+            return false;
+        } else {
+            Type genericType = field.getGenericType();
+            if(!(genericType instanceof ParameterizedType)) {
+                return false;
+            } else {
+                Type listType = ((ParameterizedType)genericType).getActualTypeArguments()[0];
+                return !WebElement.class.equals(listType)?false:field.getAnnotation(FindBy.class) != null || field.getAnnotation(FindBys.class) != null || field.getAnnotation(FindAll.class) != null;
+            }
+        }
+    }
+
+    protected WebElement proxyForLocator(ClassLoader loader, ElementLocator locator) {
+        LocatingElementHandler handler = new LocatingElementHandler(locator);
+        WebElement proxy = (WebElement)Proxy.newProxyInstance(loader, new Class[]{WebElement.class, WrapsElement.class, Locatable.class}, handler);
+        return proxy;
+    }
+
+    protected List&lt;WebElement&gt; proxyForListLocator(ClassLoader loader, ElementLocator locator) {
+        LocatingElementListHandler handler = new LocatingElementListHandler(locator);
+        List proxy = (List)Proxy.newProxyInstance(loader, new Class[]{List.class}, handler);
+        return proxy;
+    }
+</code></pre>
+
+<p>我们再看一下LocatingElementHandler,可以看到实际在待用PageFactory创建的元素时候
+都是通过这个掉用LocatingElementHandler</p>
+<pre><code class="java">public class LocatingElementHandler implements InvocationHandler {
+    private final ElementLocator locator;
+
+    public LocatingElementHandler(ElementLocator locator) {
+        this.locator = locator;
+    }
+
+    public Object invoke(Object object, Method method, Object[] objects) throws Throwable {
+        WebElement element;
+        try {
+            element = this.locator.findElement();
+        } catch (NoSuchElementException var7) {
+            if(&quot;toString&quot;.equals(method.getName())) {
+                return &quot;Proxy element for: &quot; + this.locator.toString();
+            }
+
+            throw var7;
+        }
+
+        if(&quot;getWrappedElement&quot;.equals(method.getName())) {
+            return element;
+        } else {
+            try {
+                return method.invoke(element, objects);
+            } catch (InvocationTargetException var6) {
+                throw var6.getCause();
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>以上Selenium PageFactory大致的实现，从过程来看：
+PageFaction-&gt; initElements-&gt; proxyFields</p>
+<h2 id="page-factory_2">Page Factory 有什么好处</h2>
+<p>个人理解的好处:</p>
+<ul>
+<li>可以通过修改InvocationHandler里面的处理,比如
+  <code>java
+  element = this.locator.findElement();</code>
+  如果都使用wait().util的方式,这样可以使所有查找的元素更加稳定</li>
+<li>使用了proxy的方式,在实例化WebElement的时候，实际上不管WebElement存在不存在都可以创建
+   而实际findElement都会延迟到真的调用这个元素时执行,这带来一个好处就是如果WebElement的实例创建后
+   页面DOM刷新后,需要重新查找WebElement,否则可能抛出StaleElementReferenceException,而Proxy之后每次都会自动
+   查找,这样就减少了代码处理</li>
+<li>工厂的设计模式同时也带了了灵活程度,在创建页面或者页面元素的时候,可以开始添加统一的前置或者后置的处理</li>
+</ul>
+<p>但是可惜的是Selenium并没有提供开发的接口来让用户定制,所以如果自己定制PageFactory模式,则需要自己去实现Selenium这
+一套方法,同时加入自己特殊的实现</p>
+                
+              
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../simplest_testngreport/" title="TestNG 定制报表简单原理" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                TestNG 定制报表简单原理
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../random_data/" title="随机数据" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                随机数据
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,11 @@
+@startuml
+TestNG -> TestNGRunner:运行测试
+TestNGRunner -->DataProvider:加载测试数据
+DataProvider --> 测试用例:分发数据到不同的测试用例
+测试用例-> 测试流程:运行不同的测试流程
+测试流程-> 元素操作器:操作html元素
+元素操作器-> 检查点:在检查点指定位置检查
+检查点-> 测试结果集:放入检查结果
+测试结果集-> TestNGRunner:总结果统计
+TestNGRunner -> TestNG:生成测试结果
+@enduml

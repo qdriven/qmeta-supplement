@@ -1,0 +1,1137 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="自动化测试文档中心">
+      
+      
+      
+      <link rel="shortcut icon" href="../../favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>TestNG 定制报表简单原理 - 自动化测试</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.6a5ad368.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#e92063">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="pink" data-md-color-accent="pink">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#testng" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="自动化测试" class="md-header-nav__button md-logo" aria-label="自动化测试">
+      
+  <img src="../../logo-white.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            自动化测试
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              TestNG 定制报表简单原理
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="自动化测试" class="md-nav__button md-logo" aria-label="自动化测试">
+      
+  <img src="../../logo-white.svg" alt="logo">
+
+    </a>
+    自动化测试
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="主页" class="md-nav__link">
+      主页
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      QuickStart
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="QuickStart" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        QuickStart
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/project_structure/" title="项目结构和配置" class="md-nav__link">
+      项目结构和配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../selenium_in_a_wild_way/" title="WEB页面自动化-SELENIUM管理页面元素" class="md-nav__link">
+      WEB页面自动化-SELENIUM管理页面元素
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/webui_automation_quickstart/" title="WEB页面自动化-开始" class="md-nav__link">
+      WEB页面自动化-开始
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/webui_automation_realexample/" title="WEB页面自动化-真实用例" class="md-nav__link">
+      WEB页面自动化-真实用例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/APIAutomation/" title="API 自动化测试" class="md-nav__link">
+      API 自动化测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/api_testing_qa/" title="API 自动化测试常见问题" class="md-nav__link">
+      API 自动化测试常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../activity_automation/activity_automation_defined_employees/" title="工作流测试之指定审批节点" class="md-nav__link">
+      工作流测试之指定审批节点
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../activity_automation/activity_automation_dynamic/" title="工作流测试之动态审批节点" class="md-nav__link">
+      工作流测试之动态审批节点
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      自动化测试模块介绍
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="自动化测试模块介绍" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        自动化测试模块介绍
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../intro/automation-purpose/" title="目的" class="md-nav__link">
+      目的
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../intro/automation-framework-impl/" title="基本模块的作用" class="md-nav__link">
+      基本模块的作用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/self_defined_elements/" title="页面自动化-页面元素的使用" class="md-nav__link">
+      页面自动化-页面元素的使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/element_handler/" title="页面自动化-页面元素方法查询" class="md-nav__link">
+      页面自动化-页面元素方法查询
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/pageobject_codegenerator/" title="页面自动化-页面代码生成" class="md-nav__link">
+      页面自动化-页面代码生成
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../webui_automation/build_test/" title="页面自动化-WebTestActionBuilder" class="md-nav__link">
+      页面自动化-WebTestActionBuilder
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      接口自动化测试
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="接口自动化测试" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        接口自动化测试
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/web%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/" title="接口测试－WEB接口常见的实现方法" class="md-nav__link">
+      接口测试－WEB接口常见的实现方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/APIAutomation/" title="API 自动化测试" class="md-nav__link">
+      API 自动化测试
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../api_automation/API%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95-%E8%BF%9B%E9%98%B6/" title="API自动化测试-进阶" class="md-nav__link">
+      API自动化测试-进阶
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Tips
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tips" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Tips
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WebTest_Debug/" title="WebUI Debug" class="md-nav__link">
+      WebUI Debug
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../find_by_ref/" title="FindByRef annotation 使用" class="md-nav__link">
+      FindByRef annotation  使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../best_practice/verification_annotation/" title="verification 注解使用" class="md-nav__link">
+      verification 注解使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../best_practice/code_style/" title="JAVA 自动化测试代码规范" class="md-nav__link">
+      JAVA 自动化测试代码规范
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../best_practice/simple_ui_case/" title="一个简单测试用例的自动化实例" class="md-nav__link">
+      一个简单测试用例的自动化实例
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../database/Database/" title="数据库操作" class="md-nav__link">
+      数据库操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testng-xml-configuration/" title="TestNG 测试XML配置" class="md-nav__link">
+      TestNG 测试XML配置
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../use_own_password/" title="使用自己的用户名和密码获取万能密码" class="md-nav__link">
+      使用自己的用户名和密码获取万能密码
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../JsonHelper/" title="JSON处理" class="md-nav__link">
+      JSON处理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../page_object/" title="Page Object/Page Factory" class="md-nav__link">
+      Page Object/Page Factory
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../TreeElement/" title="TreeElement 使用" class="md-nav__link">
+      TreeElement 使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WebDriverHelper/" title="添加了Expectation的WebDriver操作" class="md-nav__link">
+      添加了Expectation的WebDriver操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../WebDriver%E6%93%8D%E4%BD%9C/" title="WebDriver原生操作" class="md-nav__link">
+      WebDriver原生操作
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../how_to_write_teststeps/" title="编写测试步骤的不同方法" class="md-nav__link">
+      编写测试步骤的不同方法
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../repeatable_elements/" title="重复填写控件使用" class="md-nav__link">
+      重复填写控件使用
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../StateElementReferneceException/" title="StateElementReferneceException" class="md-nav__link">
+      StateElementReferneceException
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DateHelper/" title="DateHelper" class="md-nav__link">
+      DateHelper
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../database_assetion/" title="数据库验证" class="md-nav__link">
+      数据库验证
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../database_update/" title="预设条件数据的更新和回滚" class="md-nav__link">
+      预设条件数据的更新和回滚
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testng_faq/" title="TestNG测试常见问题" class="md-nav__link">
+      TestNG测试常见问题
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        TestNG 定制报表简单原理
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="TestNG 定制报表简单原理" class="md-nav__link md-nav__link--active">
+      TestNG 定制报表简单原理
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#itestlistenerireporter" class="md-nav__link">
+    ITestListener,IReporter实现
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testng_1" class="md-nav__link">
+    编写TestNG的测试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testngxml" class="md-nav__link">
+    将监听器放入Testng.xml文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testngxml_1" class="md-nav__link">
+    运行Testng.xml文件,查看结果
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../PageFactory/" title="Page Factory 模式原理" class="md-nav__link">
+      Page Factory 模式原理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../random_data/" title="随机数据" class="md-nav__link">
+      随机数据
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../data_construct_by_context/" title="动态测试数据构建" class="md-nav__link">
+      动态测试数据构建
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Git
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Git" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Git
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../git/git_basic/" title="Git 基础" class="md-nav__link">
+      Git 基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#itestlistenerireporter" class="md-nav__link">
+    ITestListener,IReporter实现
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testng_1" class="md-nav__link">
+    编写TestNG的测试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testngxml" class="md-nav__link">
+    将监听器放入Testng.xml文件
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testngxml_1" class="md-nav__link">
+    运行Testng.xml文件,查看结果
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+  
+    <div id="bsa-cpc"></div>
+  
+  
+                
+                
+                  
+                
+                
+                <h1 id="testng">TestNG 报告定制最简单的原理</h1>
+<p>如果需要定制TestNG的测试报告,可以先想一下首先需要什么的数据,其实最简单的数据就是测试用例成功失败的数据,
+那么实际上TestNG提供了ITestListener的接口可以让你获取这些测试数据.
+同时IReporter 接口可以让用户在调用最后自己生成测试报告.</p>
+<p>所以其实只要用一个类实现ITestListener,IReporter就可以了.</p>
+<h2 id="itestlistenerireporter">ITestListener,IReporter实现</h2>
+<p>一下是我一个最简单的实现, 实际上TestNG开放出来的这些监听器,主要是让你可以获取TestNG 测试容器中运行测试的数据,上下文.
+关于代码里面的ITestResult, xmlSuites,suites 可以自行查找</p>
+<pre><code class="java">public class TestNGSimpleReport implements ITestListener, IReporter {
+    private List&lt;String&gt; testPassed = Lists.newArrayList();
+    private List&lt;String&gt; testFailed = Lists.newArrayList();
+    private List&lt;String&gt; testSkipped = Lists.newArrayList();
+
+    @Override
+    public void generateReport(List&lt;XmlSuite&gt; xmlSuites, List&lt;ISuite&gt; suites,
+                               String outputDirectory) {
+        System.out.println(&quot;Passed Case: &quot; + testPassed.size());
+        System.out.println(&quot;testFailed Case: &quot; + testFailed.size());
+        System.out.println(&quot;testSkipped Case: &quot; + testSkipped.size());
+
+        for (String passed : testPassed) {
+            System.out.println(&quot;passed case:&quot; + passed);
+        }
+        for (String passed : testFailed) {
+            System.out.println(&quot;failed case:&quot; + passed);
+        }
+
+        for (String passed : testSkipped) {
+            System.out.println(&quot;skipped case:&quot; + passed);
+        }
+
+    }
+
+    @Override
+    public void onTestStart(ITestResult result) {
+
+    }
+
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        testPassed.add(result.getMethod().getMethodName());
+    }
+
+    @Override
+    public void onTestFailure(ITestResult result) {
+        testFailed.add(result.getMethod().getMethodName());
+    }
+
+    @Override
+    public void onTestSkipped(ITestResult result) {
+        testSkipped.add(result.getMethod().getMethodName());
+    }
+
+    @Override
+    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+
+    }
+
+    @Override
+    public void onStart(ITestContext context) {
+
+    }
+
+    @Override
+    public void onFinish(ITestContext context) {
+
+    }
+}
+
+</code></pre>
+
+<h2 id="testng_1">编写TestNG的测试</h2>
+<pre><code class="java">public class TestNGTest {
+
+    @Test
+    public void test_pass(){
+        System.out.println(&quot;passed_case&quot;);
+    }
+
+    @Test
+    public void test_failed(){
+        Assert.assertTrue(false);
+    }
+
+    @Test
+    public void test_pass_2(){
+        System.out.println(&quot;passed_case_2&quot;);
+    }
+}
+</code></pre>
+
+<h2 id="testngxml">将监听器放入Testng.xml文件</h2>
+<pre><code class="xml">   &lt;suite name=&quot;SimpleReport&quot;&gt;
+       &lt;listeners&gt;
+           &lt;listener class-name=&quot;com.hedwig.testng.TestNGSimpleReport&quot;/&gt;
+       &lt;/listeners&gt;
+       &lt;test verbose=&quot;1&quot; name=&quot;simple test&quot; &gt;
+           &lt;classes&gt;
+               &lt;class name=&quot;com.hedwig.testng.TestNGTest&quot;/&gt;
+           &lt;/classes&gt;
+       &lt;/test&gt;
+
+   &lt;/suite&gt; 
+</code></pre>
+
+<h2 id="testngxml_1">运行Testng.xml文件,查看结果</h2>
+<p>结果如下,是不是很简单? 如果想做的cool一点,可以将这些数据写到一个html模版,写入文件就可以了</p>
+<pre><code class="java">===============================================
+SimpleReport
+Total tests run: 3, Failures: 1, Skips: 0
+===============================================
+
+Passed Case: 2
+testFailed Case: 1
+testSkipped Case: 0
+passed case:test_pass
+passed case:test_pass_2
+failed case:test_failed
+</code></pre>
+                
+              
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../testng_faq/" title="TestNG测试常见问题" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                TestNG测试常见问题
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../PageFactory/" title="Page Factory 模式原理" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Page Factory 模式原理
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
