@@ -1,20 +1,14 @@
 package io.qmeta.testng.util;
 
-import cn.hutool.json.JSONUtil;
+import io.ift.automation.logging.TestResultLogger;
+import io.ift.automation.tm.TestNGTestContextAware;
 import com.google.common.collect.Lists;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-import io.qmeta.testng.TestNGTestContextAware;
-import io.qmeta.testng.listener.TestResultLogger;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
@@ -32,80 +26,13 @@ public class TemplateReportHelper {
     private static final String SIMPLE_REPORT_TEMPLATE_FILE = "testresult.ftl";
     private static final String SIMPLE_REPORT_DIR = "simple-report/";
     private static final String SIMPLE_REPORT_FILE = "testresult.html";
-    private static final String classPath = TemplateReportHelper.class.getClassLoader().getSystemResource("").getPath();
+    private static String classPath = TemplateReportHelper.class.getClassLoader().getSystemResource("").getPath();
 
 //    private String outputPath;
 
     private TemplateReportHelper() {
     }
-    public static class ScreenShotUtils {
 
-        private ScreenShotUtils() {
-        }
-
-        private static final String SCREENSHOT_PATH = "target/screenshots/";
-        private static final String TEST_SCREENSHOT_PATH = "simple-report/screenshots/";
-        private static final String PIC_SUFFIX = ".jpg";
-        private static String classPath = ScreenShotUtils.class.getClassLoader().getResource("").getPath();
-
-        @Deprecated
-        public static String takeScreenshot(WebDriver driver) {
-            File file = FileHelper.createFile(SCREENSHOT_PATH, generateFileName());
-            File pic = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            try {
-                FileUtils.copyFile(pic, file);
-            } catch (IOException e) {
-
-            }
-            return file.getAbsolutePath();
-        }
-
-        public static void takeScreenshot(WebDriver driver, String path) {
-            File file = FileHelper.createFile(path);
-            File pic = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            try {
-                FileUtils.copyFile(pic, file);
-            } catch (Exception e) {
-                //ignore this exception
-            }
-        }
-
-        public static String takeScreenshotForSimpleReport(WebDriver driver) {
-            String fileName = generateFileName();
-            FileHelper.createDir(classPath + TEST_SCREENSHOT_PATH);
-            String jpgPath = classPath + TEST_SCREENSHOT_PATH + fileName;
-            takeScreenshot(driver, jpgPath);
-            return "screenshots/" + fileName;
-        }
-
-        private static String generateFileName() {
-            return "screenshot-" + System.currentTimeMillis() + PIC_SUFFIX;
-        }
-    }
-
-    public static void openReport() {
-        // 判断当前系统是否支持Java AWT Desktop扩展
-        String flag = "true";
-        if (flag == null || flag.equalsIgnoreCase("false")) return;
-        if (java.awt.Desktop.isDesktopSupported()) {
-            try {
-                // 创建一个URI实例
-                String classLoaderPath = TemplateReportHelper.class.getClassLoader().getResource("").getPath();
-                String reportPath = "file:///" + classLoaderPath + "simple-report/testresult.html";
-                java.net.URI uri = java.net.URI.create(reportPath);
-                // 获取当前系统桌面扩展
-                java.awt.Desktop dp = java.awt.Desktop.getDesktop();
-                // 判断系统桌面是否支持要执行的功能
-                if (dp.isSupported(java.awt.Desktop.Action.BROWSE)) {
-                    // 获取系统默认浏览器打开链接
-                    dp.browse(uri);
-                }
-            } catch (Exception e) {
-                // 此为uri为空时抛出异常
-                TestResultLogger.error(e);
-            }
-        }
-    }
     public static void generateTestNGVueReport(TestNGTestContextAware.VueData data){
         List<String> fileLists = Lists.newArrayList("bootstrap-theme.min.css",
                 "bootstrap.js",
@@ -126,7 +53,7 @@ public class TemplateReportHelper {
         }
 
         String path = FileHelper.createFileInClassPath(SIMPLE_REPORT_DIR,"testresult.js").getAbsolutePath();
-        FileHelper.writeToFile(path,String.format("new Vue(%s);", JSONUtil.toJsonPrettyStr(data)),false);
+        FileHelper.writeToFile(path,String.format("new Vue(%s);",JSONHelper.toJSONString(data)),false);
 
     }
     /**
@@ -151,7 +78,7 @@ public class TemplateReportHelper {
         try {
             out = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(FileHelper.createFileInClassPath(SIMPLE_REPORT_DIR, SIMPLE_REPORT_FILE)),
-                    StandardCharsets.UTF_8));
+                    "UTF-8"));
             Template template ;
             if(templateFolder.exists()) {
                 template = cfg.getTemplate(SIMPLE_REPORT_TEMPLATE_FILE);
@@ -193,7 +120,7 @@ public class TemplateReportHelper {
         try {
             //out = new FileWriter(file);
             out = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream(file), StandardCharsets.UTF_8));
+                    new FileOutputStream(file), "UTF-8"));
             Template template;
             if(templateFolder.exists()){
                 template= cfg.getTemplate(templateLocation);

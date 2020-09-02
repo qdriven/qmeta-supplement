@@ -105,7 +105,7 @@ public class FileHelper {
      * 数据写入到文件
      * @param path
      * @param text
-     * @throws java.io.IOException
+     * @throws IOException
      */
     public static File writeToFile(String path,String text) {
 

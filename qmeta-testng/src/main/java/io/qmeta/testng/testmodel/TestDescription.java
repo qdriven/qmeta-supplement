@@ -1,7 +1,7 @@
 package io.qmeta.testng.testmodel;
 
-import io.ift.automation.helpers.ExcelHelper;
-import io.ift.automation.helpers.StringHelper;
+
+import cn.hutool.core.util.StrUtil;
 import com.google.common.base.MoreObjects;
 import com.google.common.collect.Lists;
 import org.apache.logging.log4j.LogManager;
@@ -89,7 +89,7 @@ public class TestDescription {
                     if(((TestDescription)object).getTestMethodName().equalsIgnoreCase(m.getName())){
                         data.add(objects);
                     }else{
-                        logger.info("数据"+ StringHelper.join(objects,",")+"被过滤了....");
+                        logger.info("数据"+ StrUtil.join(",",objects)+"被过滤了....");
                     }
                     break;
                 }
