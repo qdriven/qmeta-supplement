@@ -12,6 +12,7 @@
         <module>supplement-core</module>
         <module>qmeta-testng</module>
         <module>qmeta-weixin</module>
+        <module>qmeta-datafactory</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
