@@ -11,5 +11,22 @@
 
     <artifactId>qmeta-datafactory</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>io.qmeta</groupId>
+            <artifactId>supplement-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.6.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
