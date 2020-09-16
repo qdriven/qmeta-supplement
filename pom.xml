@@ -13,6 +13,9 @@
         <module>qmeta-testng</module>
         <module>qmeta-weixin</module>
         <module>qmeta-datafactory</module>
+        <module>qmeta-graphsql</module>
+        <module>qmeta-templates</module>
+        <module>qmeta-wps</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
