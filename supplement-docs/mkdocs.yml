@@ -1,0 +1,16 @@
+site_name: 自动化测试
+site_description: 自动化测试文档中心
+
+pages:
+- 主页: index.md
+
+
+theme:
+  name: 'material'
+  custom_dir: 'docs/theme'
+  palette:
+    primary: pink
+    accent: pink
+  logo: 'logo-white.svg'
+  favicon: 'favicon.png'
+# theme: Cosmo

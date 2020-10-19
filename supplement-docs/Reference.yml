@@ -1,0 +1,13 @@
+repos:
+  - https://github.com/NREL/api-umbrella.git
+  - https://github.com/apache/apisix
+  - https://github.com/DXY-F2E/api-mocker.git
+  - https://github.com/jormaechea/open-api-mocker
+  - https://github.com/api-evangelist/virtualization
+  - https://github.com/apimastery/APISimulator.git
+  - https://gravitee.io/
+  - http://Tyk.io
+  - https://github.com/apioo/fusio.git
+  - https://www.fusio-project.org/
+  - https://zhuanlan.zhihu.com/p/259737867
+  - https://www.dreamfactory.com/developers/scripts

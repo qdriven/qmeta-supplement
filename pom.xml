@@ -10,18 +10,20 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>supplement-core</module>
-        <module>qmeta-testng</module>
-        <module>qmeta-weixin</module>
+<!--        <module>qmeta-testng</module>-->
         <module>qmeta-datafactory</module>
         <module>qmeta-graphsql</module>
         <module>qmeta-templates</module>
         <module>qmeta-wps</module>
+        <module>qmeta-starter</module>
+        <module>qmeta-testcases</module>
+        <module>qmeta-tips</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <hutool-all-version>5.4.3</hutool-all-version>
     </properties>
     <dependencyManagement>
-
         <dependencies>
             <dependency>
                 <groupId>org.yaml</groupId>
@@ -36,7 +38,7 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>5.4.0</version>
+                <version>${hutool-all-version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
             <dependency>
@@ -116,8 +118,8 @@
                     <!--                    </compilerArgs>-->
                     <verbose>true</verbose>
                     <fork>true</fork>
-                    <source>9</source>
-                    <target>9</target>
+                    <source>11</source>
+                    <target>11</target>
                     <compilerVersion>14</compilerVersion>
                     <!--                    <annotationProcessorPaths>-->
                     <!--                        <path>-->

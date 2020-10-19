@@ -2,11 +2,12 @@
 
 [![codecov](https://codecov.io/gh/qdriven/qmeta-supplement/branch/master/graph/badge.svg)](https://codecov.io/gh/qdriven/qmeta-supplement)
 
+Tester Supplement Tools for JAVA. It is a collection of different JAVA Helper for easy assembling test cases.
+There are several modules:
 
-Supplement Tools for JAVA. It is a collection
-of different JAVA Helper based on Hutool
+- [supplement-core](./supplement-core), Base JAVA utilities based on Hutool
 
-## Features:
+### 1. Supplement-core: Features:
 
 1. Random utils
 2. Assert Utils
@@ -24,4 +25,4 @@ of different JAVA Helper based on Hutool
 
 ## Enrich this repo for tester learning java by example
 
-
+## Change something to upload again

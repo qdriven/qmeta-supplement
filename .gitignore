@@ -3,3 +3,5 @@
 *.class
 *.jar
 target/
+application.yml
+/qmeta-wps/src/main/resources/application.yml
