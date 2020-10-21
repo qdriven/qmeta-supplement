@@ -31,7 +31,7 @@ public interface WpsYunFileApi {
     @PUT("oauthapi/v3/app/files/upload/update")
     Call<CreateCommitFileResponse> updateFile(@Body CommitFileRequest request);
 
-    @GET("authapi/v3/app/files/link")
+    @GET("oauthapi/v3/app/files/link")
     Call<SharedLinkResponse> getSharedLink(@QueryMap Map<String,Object> createShareLinkRequest);
 
     @GET("oauthapi/v3/app/files/download/url")

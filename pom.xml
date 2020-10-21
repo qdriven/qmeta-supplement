@@ -12,7 +12,6 @@
         <module>supplement-core</module>
 <!--        <module>qmeta-testng</module>-->
         <module>qmeta-datafactory</module>
-        <module>qmeta-graphsql</module>
         <module>qmeta-templates</module>
         <module>qmeta-wps</module>
         <module>qmeta-starter</module>
